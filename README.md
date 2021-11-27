@@ -17,3 +17,12 @@ Start jupyter lab:
 ```shell
 jupyter-lab
 ```
+
+## Data
+
+### Folder `Data`
+
+
+### Folder `Runs Computed`
+
+`<date>_<athlete>_<run>.csv`
