@@ -11,7 +11,7 @@ def load_data():
 
 df = load_data()
 
-st.title('Descriptive Analysis')
+st.title('Runs in location')
 
 st.sidebar.markdown("## Filter options")
 
