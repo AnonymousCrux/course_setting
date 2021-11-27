@@ -9,3 +9,4 @@ dependencies:
   - scikit-learn=0.24.1
   - xlrd=2.0.1
   - openpyxl=3.0.9
+  - streamlit=1.2.0
