@@ -1,6 +1,5 @@
 # course_setting
 
-
 ## Setup jupyter-lab with miniconda
 
 Install miniconda from https://docs.conda.io/en/latest/miniconda.html.
@@ -18,11 +17,21 @@ Start jupyter lab:
 jupyter-lab
 ```
 
+## Dashboard
+
+Start the dasboard with:
+
+```shell
+streamlit run dashboard/dashboard.py
+```
+
 ## Data
 
 ### Folder `Data`
 
+Cleaned up dataset.
 
 ### Folder `Runs Computed`
 
 `<date>_<athlete>_<run>.csv`
+
