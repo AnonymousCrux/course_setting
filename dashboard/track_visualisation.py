@@ -6,7 +6,7 @@ import pandas as pd
 import seaborn as sns
 import streamlit as st
 
-path = "../Runs Computed"
+path = "Runs Computed"
 
 
 @st.cache
