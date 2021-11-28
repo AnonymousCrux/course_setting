@@ -8,13 +8,15 @@ from sklearn.manifold import TSNE
 def show_tsne(df):
     st.title('T-sne clustering')
 
+    st.sidebar.markdown("## Options")
+
     ## create location and turn sets
     locations_and_turns = df[['location', 'TurnNr']]
     turn_no = df['TurnNr'].unique()
     location_set = df['location'].unique()
 
     ## create stream lit dashboard to select location and turn
-    selected_location = st.radio(
+    selected_location = st.sidebar.radio(
         "What's the location you want to inspect?",
         location_set)
 
@@ -22,7 +24,7 @@ def show_tsne(df):
     min_turn = min(df['TurnNr'])
     max_turn = max(df['TurnNr'])
 
-    selected_turn = st.slider('Which turn would you like to see?', min_turn, max_turn, 2)
+    selected_turn = st.sidebar.slider('Which turn would you like to see?', min_turn, max_turn, 2)
 
     df = df.loc[df['TurnNr'] == selected_turn]
 
