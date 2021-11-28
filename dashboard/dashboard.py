@@ -3,6 +3,7 @@ import streamlit as st
 
 from correlation import show_corr
 from dim_reduction import show_tsne
+from regression import show_regression
 from runs_in_location_by_turn import show_runs_in_location
 from track_visualisation import show_track_visualisation
 
@@ -19,7 +20,7 @@ def load_data():
 
 df = load_data()
 
-pages = {"Track visualisation": 1, "Correlation": 2, "t-SNE": 3, "Runs in location": 4}
+pages = {"Track visualisation": 1, "Correlation": 2, "t-SNE": 3, "Runs in location": 4, "Regression Model": 5}
 
 st.sidebar.markdown("## Page")
 
@@ -33,6 +34,8 @@ elif pages[selected_page] == 3:
     show_tsne(df)
 elif pages[selected_page] == 4:
     show_runs_in_location(df)
+elif pages[selected_page] == 5:
+    show_regression(df.copy())
 
 st.sidebar.text("")
 st.sidebar.text("")
