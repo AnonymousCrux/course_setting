@@ -21,6 +21,19 @@ def get_list():
     return df_filenames
 
 
+@st.cache
+def get_average_time(df):
+    avg_time = 0
+    counter = 0
+
+    for index, row in df.iterrows():
+        df_place_athlete_run = pd.read_csv(f"Runs Computed/{row['date']}_{row['athlete']}_{row['run']}.csv")
+        avg_time += df_place_athlete_run['time[s]'].iloc[-1]
+        counter += 1
+
+    return avg_time / counter
+
+
 def show_track_visualisation():
     st.sidebar.markdown("## Filter options")
 
@@ -28,6 +41,8 @@ def show_track_visualisation():
     possible_dates.sort()
 
     selected_date = st.sidebar.selectbox('Select the Date', options=possible_dates)
+    df_selected_files = get_list()[get_list()['date'] == selected_date]
+    avg_time_total = get_average_time(df_selected_files)
 
     possible_athletes = get_list()[get_list()['date'] == selected_date]['athlete'].unique()
     possible_athletes.sort()
@@ -70,9 +85,6 @@ def show_track_visualisation():
 
     fig = plt.figure(figsize=(20, 20))
     ax = fig.gca(projection='3d')
-    x = x_coordinates
-    y = y_coordinates
-    z = z_coordinates
     scat_plot = ax.scatter(xs=x_coordinates, ys=y_coordinates, zs=z_coordinates, c=speed, linewidth=2, cmap="viridis")
     plt.gca().invert_zaxis()
     ax.set_xlabel("x position", size=15)
@@ -86,9 +98,9 @@ def show_track_visualisation():
     st.pyplot(fig)
 
     sns.set_style("whitegrid")
-    cmap = sns.cubehelix_palette(as_cmap=True)
     fig, ax1 = plt.subplots(figsize=(15, 8))
     points = ax1.scatter(x=time_list, y=z_coordinates, c=speed, s=3, cmap="viridis")
+    plt.scatter(avg_time_total, z_coordinates[-1], color='b')
     fig.colorbar(points, label='Speed [m/s]')
     ax1.set(xlabel='Time [s]', ylabel='Absolute Elevation [m.a.s.l]')
     ax1.set_title("Course Elevation Profile ", size=20)
