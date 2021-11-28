@@ -43,6 +43,3 @@ ax.set_xticklabels(
     horizontalalignment='right'
 );
 st.pyplot(fig)
-
-
-second_matrix = st.sidebar.checkbox('Second Correlation Matrix')
